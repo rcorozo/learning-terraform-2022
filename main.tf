@@ -24,6 +24,15 @@ resource "aws_instance" "blog" {
 
   vpc_security_group_ids = [module.blog_sg.security_group_id]
 
+  root_block_device {
+    delete_on_termination = true
+    volume_size           = 10
+    volume_type           = "gp2"
+    tags                  = {
+      Name = "Terraform Root Block Device"
+    }
+  }
+
   tags = {
     Name = "HelloWorld"
   }
