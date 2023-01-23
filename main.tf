@@ -37,7 +37,7 @@ resource "aws_instance" "blog" {
 
   vpc_security_group_ids = [module.blog_sg.security_group_id]
 
-  root_block_device {
+/*   root_block_device {
     delete_on_termination = true
     volume_size           = 10
     volume_type           = "gp2"
@@ -45,7 +45,7 @@ resource "aws_instance" "blog" {
       Name = "Terraform Root Block Device"
     }
   }
-
+ */
   tags = {
     Name = "HelloWorld"
   }
@@ -95,9 +95,9 @@ module "blog_sg" {
   source  = "terraform-aws-modules/security-group/aws"
   version = "4.13.0"
 
-  name = "blog_new"
+  name = "blog"
 
-  vpc_id = module.blog_vpc.public_subnets[0]
+  vpc_id = module.blog_vpc.vpc_id
 
   ingress_rules       = ["http-80-tcp", "https-443-tcp", "ssh-tcp"]
   ingress_cidr_blocks = ["0.0.0.0/0"]
