@@ -1,6 +1,8 @@
 module "qa" {
     source = "../modules/blog"
 
+    instance_type = "t3.micro"
+
     environment = {
         name           = "qa"
         network_prefix = "10.1"
